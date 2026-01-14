@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Ex10LunarYear } from './ex10-lunar-year';
+import { Ex10LunarYearComponent } from './ex10-lunar-year';
 
-describe('Ex10LunarYear', () => {
-  let component: Ex10LunarYear;
-  let fixture: ComponentFixture<Ex10LunarYear>;
+describe('Ex10LunarYearComponent', () => {
+  let component: Ex10LunarYearComponent;
+  let fixture: ComponentFixture<Ex10LunarYearComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Ex10LunarYear]
+      imports: [Ex10LunarYearComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Ex10LunarYear);
+    fixture = TestBed.createComponent(Ex10LunarYearComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -21,3 +21,4 @@ describe('Ex10LunarYear', () => {
     expect(component).toBeTruthy();
   });
 });
+
