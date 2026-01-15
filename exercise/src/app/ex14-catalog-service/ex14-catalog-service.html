@@ -1,0 +1,35 @@
+<table border="1" width="100%" cellpadding="8" cellspacing="0">
+
+  <ng-container *ngFor="let c of categories">
+
+    <!-- ===== DANH MỤC ===== -->
+    <tr>
+      <th>Mã Danh Mục</th>
+      <th colspan="3">Tên Danh Mục</th>
+    </tr>
+    <tr>
+      <td>{{ c.Cateid }}</td>
+      <td colspan="3">{{ c.CateName }}</td>
+    </tr>
+
+    <!-- HEADER PRODUCT -->
+    <tr>
+      <th>Mã Sản Phẩm</th>
+      <th>Tên Sản Phẩm</th>
+      <th>Giá Sản Phẩm</th>
+      <th>Picture</th>
+    </tr>
+
+    <!-- ===== PRODUCT ===== -->
+    <tr *ngFor="let p of c.Products">
+      <td>{{ p.ProductId }}</td>
+      <td>{{ p.ProductName }}</td>
+      <td>{{ p.Price }}</td>
+      <td>
+        <img [src]="p.Image" width="60">
+      </td>
+    </tr>
+
+  </ng-container>
+
+</table>
