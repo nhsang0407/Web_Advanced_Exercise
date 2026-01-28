@@ -6,7 +6,6 @@ import { App } from './app';
 import { Ptb2 } from './ptb2/ptb2';
 import { FormsModule } from '@angular/forms';
 import { Learndirective } from './learndirective/learndirective';
-import { Test } from './test/test';
 import { Listcustomer } from './listcustomer/listcustomer';
 import { CommonModule } from '@angular/common';
 import { Listcustomer2 } from './listcustomer2/listcustomer2';
@@ -18,13 +17,13 @@ import { Notfound } from './notfound/notfound';
 import { Listproduct } from './listproduct/listproduct';
 import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
+import { FakeProduct27 } from './fake-product27/fake-product27';
 
 @NgModule({
   declarations: [
     App,
     Ptb2,
     Learndirective,
-    Test,
     Listcustomer,
     Listcustomer2,
     Customerdetail,
@@ -33,7 +32,8 @@ import { FakeProduct } from './fake-product/fake-product';
     Notfound,
     Listproduct,
     Productdetail,
-    FakeProduct
+    FakeProduct,
+    FakeProduct27
   ],
   imports: [
     BrowserModule,

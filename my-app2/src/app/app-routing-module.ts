@@ -8,6 +8,7 @@ import { Notfound } from './notfound/notfound';
 import { Listproduct } from './listproduct/listproduct';
 import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
+import { FakeProduct27 } from './fake-product27/fake-product27';
 
 const routes: Routes = [
   {path:"gioi-thieu", component:About},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"san-pham-1",component: Listproduct},
   {path:"san-pham-1/:id", component: Productdetail},
   {path:"ex26", component: FakeProduct},
+  {path:"ex27", component: FakeProduct27},
   {path:"**", component: Notfound}
 ];
 
