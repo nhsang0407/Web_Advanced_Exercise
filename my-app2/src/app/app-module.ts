@@ -18,6 +18,7 @@ import { Listproduct } from './listproduct/listproduct';
 import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct27 } from './fake-product27/fake-product27';
+import { TickerEx28 } from './ticker-ex28/ticker-ex28';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FakeProduct27 } from './fake-product27/fake-product27';
     Listproduct,
     Productdetail,
     FakeProduct,
-    FakeProduct27
+    FakeProduct27,
+    TickerEx28
   ],
   imports: [
     BrowserModule,

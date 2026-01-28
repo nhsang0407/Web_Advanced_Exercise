@@ -9,6 +9,7 @@ import { Listproduct } from './listproduct/listproduct';
 import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct27 } from './fake-product27/fake-product27';
+import { TickerEx28 } from './ticker-ex28/ticker-ex28';
 
 const routes: Routes = [
   {path:"gioi-thieu", component:About},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"san-pham-1/:id", component: Productdetail},
   {path:"ex26", component: FakeProduct},
   {path:"ex27", component: FakeProduct27},
+  {path:"ex28", component: TickerEx28},
   {path:"**", component: Notfound}
 ];
 
