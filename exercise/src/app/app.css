@@ -85,3 +85,89 @@
     padding: 8px 16px;
   }
 }
+
+/* Ex19 Section */
+.ex19-section {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 25px 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ex19-title {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #14b8a6;
+}
+
+.ex19-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ex19-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  font-family: inherit;
+}
+
+.ex19-btn:hover {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  border-color: #14b8a6;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.3);
+}
+
+.ex19-btn:hover .btn-text {
+  color: white;
+}
+
+.ex19-btn.active-btn {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  border-color: #14b8a6;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+}
+
+.ex19-btn.active-btn .btn-text {
+  color: white;
+}
+
+.btn-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #495057;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .ex19-section {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+
+  .ex19-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ex19-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}

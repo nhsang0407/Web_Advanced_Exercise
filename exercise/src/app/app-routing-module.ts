@@ -7,6 +7,9 @@ import { Ex22 } from './ex22/ex22';
 import { Ex10LunarYearComponent } from './ex10-lunar-year/ex10-lunar-year';
 import { Ex14CatalogService } from './ex14-catalog-service/ex14-catalog-service';
 import { Ex18 } from './ex18/ex18';
+import { Product } from './ex19/product/product';
+import { ListProduct } from './ex19/list-product/list-product';
+import { ServiceProduct } from './ex19/service-product/service-product';
 
 const routes: Routes = [
   {path:"", redirectTo:"ex22", pathMatch:"full"},
@@ -17,6 +20,9 @@ const routes: Routes = [
   {path:"ex18", component:Ex18},
   {path:"ex21", component:Ex21},
   {path:"ex22", component:Ex22},
+  { path: 'product', component: Product },
+  { path: 'list-product', component: ListProduct },
+  { path: 'service-product', component: ServiceProduct }
 ];
 
 @NgModule({

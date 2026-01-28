@@ -2,14 +2,29 @@
   <div class="nav-container">
     <h2 class="nav-title">Exercise Menu</h2>
     <ul class="nav-links">
-      <li><a routerLink="/ex10" routerLinkActive="active">Ex 10 - Lunar Year</a></li>
-      <li><a routerLink="/ex13" routerLinkActive="active">Ex 13 - List</a></li>
-      <li><a routerLink="/ex14" routerLinkActive="active">Ex 14 - Catalog</a></li>
-      <li><a routerLink="/ex18" routerLinkActive="active">Ex 18 - HTTP</a></li>
+      <li><a routerLink="/ex10" routerLinkActive="active">Ex 10</a></li>
+      <li><a routerLink="/ex13" routerLinkActive="active">Ex 13</a></li>
+      <li><a routerLink="/ex14" routerLinkActive="active">Ex 14</a></li>
+      <li><a routerLink="/ex18" routerLinkActive="active">Ex 18</a></li>
       <li><a routerLink="/ex21" routerLinkActive="active">Ex 21</a></li>
-      <li><a routerLink="/ex22" routerLinkActive="active">Ex 22 - Form</a></li>
+      <li><a routerLink="/ex22" routerLinkActive="active">Ex 22</a></li>
     </ul>
   </div>
 </nav>
+
+<div class="ex19-section">
+  <h3 class="ex19-title">Ex 19 - Product Management</h3>
+  <div class="ex19-buttons">
+    <button class="ex19-btn" routerLink="/product" routerLinkActive="active-btn">
+      <span class="btn-text">Product</span>
+    </button>
+    <button class="ex19-btn" routerLink="/list-product" routerLinkActive="active-btn">
+      <span class="btn-text">List Product</span>
+    </button>
+    <button class="ex19-btn" routerLink="/service-product" routerLinkActive="active-btn">
+      <span class="btn-text">Service Product</span>
+    </button>
+  </div>
+</div>
 
 <router-outlet />

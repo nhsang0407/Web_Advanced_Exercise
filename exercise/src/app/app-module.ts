@@ -13,6 +13,9 @@ import { Ex13 } from './ex13/ex13';
 import { Ex13Detail } from './ex13-detail/ex13-detail';
 import { Ex21 } from './ex21/ex21';
 import { Ex22 } from './ex22/ex22';
+import { Product } from './ex19/product/product';
+import { ListProduct } from './ex19/list-product/list-product';
+import { ServiceProduct } from './ex19/service-product/service-product';
 
 
 @NgModule({
@@ -24,6 +27,9 @@ import { Ex22 } from './ex22/ex22';
     Ex13Detail,
     Ex21,
     Ex22,
+    Product,
+    ListProduct,
+    ServiceProduct,
 
   ],
   imports: [
