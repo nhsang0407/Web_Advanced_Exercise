@@ -1,0 +1,31 @@
+<div class="detail-container" *ngIf="selectedProduct">
+  <h2>Product Details</h2>
+  
+  <div class="product-card">
+    <div class="product-image">
+      <img [src]="selectedProduct.Image" [alt]="selectedProduct.ProductName"/>
+    </div>
+    
+    <table class="info-table">
+      <tr>
+        <td class="label">ID:</td>
+        <td>{{selectedProduct.ProductId}}</td>
+      </tr>
+      <tr>
+        <td class="label">Name:</td>
+        <td>{{selectedProduct.ProductName}}</td>
+      </tr>
+      <tr>
+        <td class="label">Price:</td>
+        <td class="price">{{selectedProduct.Price}}</td>
+      </tr>
+    </table>
+  </div>
+  
+  <button class="back-btn" (click)="goBack()">Go Back to List</button>
+</div>
+
+<div class="error-message" *ngIf="!selectedProduct">
+  <p>Product not found!</p>
+  <button class="back-btn" (click)="goBack()">Go Back</button>
+</div>
