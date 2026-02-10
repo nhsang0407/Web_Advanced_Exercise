@@ -1,0 +1,43 @@
+﻿{
+  "books": [
+    {
+      "BookId": "BK001",
+      "BookName": "Kỹ thuật lập trình cơ bản",
+      "Tensach": "Kỹ thuật lập trình cơ bản",
+      "Price": 70000,
+      "Giaban": "70,000 VNĐ",
+      "Image": "http://localhost:3001/image/LOGO UEL.jpg",
+      "Mota": "Cuốn sách về lập trình cơ bản",
+      "Ngaycapnhat": "01/01/2024",
+      "Soluongton": "50",
+      "MaCD": "CD01",
+      "MaNXB": "NXB01"
+    },
+    {
+      "BookId": "BK004",
+      "BookName": "Máy học nâng cao",
+      "Tensach": "Máy học nâng cao",
+      "Price": 300000,
+      "Giaban": "300,000 VNĐ",
+      "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23FFCC00' width='150' height='150'/%3E%3Ctext fill='%23000000' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EBook 4%3C/text%3E%3C/svg%3E",
+      "Mota": "Kiến thức nâng cao về AI",
+      "Ngaycapnhat": "25/01/2024",
+      "Soluongton": "15",
+      "MaCD": "CD02",
+      "MaNXB": "NXB02"
+    },
+    {
+      "BookId": "BK005",
+      "BookName": "Lập trình Robot cơ bản",
+      "Tensach": "Lập trình Robot cơ bản",
+      "Price": 250000,
+      "Giaban": "250,000 VNĐ",
+      "Image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23CC0066' width='150' height='150'/%3E%3Ctext fill='%23FFFFFF' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EBook 5%3C/text%3E%3C/svg%3E",
+      "Mota": "Lập trình robot tự động",
+      "Ngaycapnhat": "30/01/2024",
+      "Soluongton": "25",
+      "MaCD": "CD03",
+      "MaNXB": "NXB03"
+    }
+  ]
+}
