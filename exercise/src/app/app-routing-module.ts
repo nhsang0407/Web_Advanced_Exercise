@@ -10,9 +10,10 @@ import { Ex18 } from './ex18/ex18';
 import { Product } from './ex19/product/product';
 import { ListProduct } from './ex19/list-product/list-product';
 import { ServiceProduct } from './ex19/service-product/service-product';
+import { Ex50RestfulAPI } from './ex50-restful-api/ex50-restful-api';
 
 const routes: Routes = [
-  {path:"", redirectTo:"ex22", pathMatch:"full"},
+  {path:"", redirectTo:"ex50", pathMatch:"full"},
   {path:"ex10", component:Ex10LunarYearComponent},
   {path:"ex13", component:Ex13},
   {path:"ex13/:id", component:Ex13Detail},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"ex18", component:Ex18},
   {path:"ex21", component:Ex21},
   {path:"ex22", component:Ex22},
+  {path:"ex50",component: Ex50RestfulAPI},
   { path: 'product', component: Product },
   { path: 'list-product', component: ListProduct },
   { path: 'service-product', component: ServiceProduct }

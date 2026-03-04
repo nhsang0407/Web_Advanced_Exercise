@@ -4,6 +4,9 @@ const port=3000
 const morgan=require("morgan")
 const fs = require('fs')
 const path=require("path")
+const crypto = require('crypto')
+const axios = require('axios')
+const { v4: uuidv4 } = require('uuid')
 
 app.use(morgan("combined"))
 app.use(express.static(path.join(__dirname, "public")))
@@ -158,8 +161,131 @@ function writeBooksToFile(data) {
   }
 }
 
+// MoMo Payment Configuration
+const MOMO_CONFIG = {
+  partnerCode: 'MOMO',
+  accessKey: 'F8BBA842ECF85',
+  secretKey: 'K951B6PE1waDMi640xX08PD3vg6EkVlz',
+  endpoint: 'https://test-payment.momo.vn/v2/gateway/api/create',
+  redirectUrl: 'http://localhost:4200/payment-result',
+  ipnUrl: 'http://localhost:3000/payment/momo/callback',
+  requestType: 'captureWallet',
+  extraData: ''
+};
+
+// MoMo Payment Endpoint
+app.post("/payment/momo", cors(), async (req, res) => {
+  try {
+    const { amount } = req.body;
+    
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ error: 'Invalid amount' });
+    }
+
+    const orderId = `MOMO${Date.now()}`;
+    const requestId = uuidv4();
+    const orderInfo = `Thanh toán đơn hàng ${orderId}`;
+    
+    // Create raw signature
+    const rawSignature = `accessKey=${MOMO_CONFIG.accessKey}&amount=${amount}&extraData=${MOMO_CONFIG.extraData}&ipnUrl=${MOMO_CONFIG.ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${MOMO_CONFIG.partnerCode}&redirectUrl=${MOMO_CONFIG.redirectUrl}&requestId=${requestId}&requestType=${MOMO_CONFIG.requestType}`;
+    
+    // Generate signature using HMAC SHA256
+    const signature = crypto
+      .createHmac('sha256', MOMO_CONFIG.secretKey)
+      .update(rawSignature)
+      .digest('hex');
+
+    // Request body to MoMo
+    const requestBody = {
+      partnerCode: MOMO_CONFIG.partnerCode,
+      accessKey: MOMO_CONFIG.accessKey,
+      requestId: requestId,
+      amount: amount.toString(),
+      orderId: orderId,
+      orderInfo: orderInfo,
+      redirectUrl: MOMO_CONFIG.redirectUrl,
+      ipnUrl: MOMO_CONFIG.ipnUrl,
+      extraData: MOMO_CONFIG.extraData,
+      requestType: MOMO_CONFIG.requestType,
+      signature: signature,
+      lang: 'vi'
+    };
+
+    console.log('MoMo Request:', requestBody);
+
+    // Send request to MoMo
+    const response = await axios.post(MOMO_CONFIG.endpoint, requestBody, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('MoMo Response:', response.data);
+
+    if (response.data && response.data.resultCode === 0) {
+      res.json({
+        success: true,
+        payUrl: response.data.payUrl,
+        orderId: orderId
+      });
+    } else {
+      res.status(400).json({
+        error: 'Failed to create payment',
+        message: response.data.message || 'Unknown error'
+      });
+    }
+  } catch (error) {
+    console.error('MoMo Payment Error:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
+// MoMo IPN (Instant Payment Notification) callback
+app.post("/payment/momo/callback", cors(), (req, res) => {
+  console.log('MoMo IPN Callback:', req.body);
+  
+  // Verify signature
+  const {
+    partnerCode,
+    orderId,
+    requestId,
+    amount,
+    orderInfo,
+    orderType,
+    transId,
+    resultCode,
+    message,
+    payType,
+    responseTime,
+    extraData,
+    signature
+  } = req.body;
+
+  // Build raw signature for verification
+  const rawSignature = `accessKey=${MOMO_CONFIG.accessKey}&amount=${amount}&extraData=${extraData}&message=${message}&orderId=${orderId}&orderInfo=${orderInfo}&orderType=${orderType}&partnerCode=${partnerCode}&payType=${payType}&requestId=${requestId}&responseTime=${responseTime}&resultCode=${resultCode}&transId=${transId}`;
+  
+  const computedSignature = crypto
+    .createHmac('sha256', MOMO_CONFIG.secretKey)
+    .update(rawSignature)
+    .digest('hex');
+
+  if (signature === computedSignature) {
+    console.log('Valid signature');
+    // Process the payment result
+    // Update order status in database, etc.
+    res.status(200).json({ message: 'OK' });
+  } else {
+    console.log('Invalid signature');
+    res.status(400).json({ message: 'Invalid signature' });
+  }
+});
+
 app.listen(port, ()=>{
     console.log(`My Server listening on port ${port}`)
     console.log(`Books API: http://localhost:${port}/books`)
+    console.log(`MoMo Payment API: http://localhost:${port}/payment/momo`)
     console.log(`Books data file: ${booksFilePath}`)
 })

@@ -10,6 +10,13 @@ import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct27 } from './fake-product27/fake-product27';
 import { TickerEx28 } from './ticker-ex28/ticker-ex28';
+import { BooksComponent } from './books-component/books-component';
+import { BookDetailComponent } from './book-detail-component/book-detail-component';
+import { FileUpload } from './file-upload/file-upload';
+import { Newbook } from './newbook/newbook';
+import { FashionComponent } from './fashion-component/fashion-component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentResultComponent } from './payment-result/payment-result.component';
 
 const routes: Routes = [
   {path:"gioi-thieu", component:About},
@@ -21,6 +28,14 @@ const routes: Routes = [
   {path:"ex26", component: FakeProduct},
   {path:"ex27", component: FakeProduct27},
   {path:"ex28", component: TickerEx28},
+  {path:"ex39", component: BooksComponent},
+  {path:"ex41", component: BookDetailComponent},
+  {path:"ex41/:id", component: BookDetailComponent},
+  {path:"ex43", component: Newbook},
+  {path:"ex49", component: FileUpload},
+  {path:"ex53", component: FashionComponent},
+  {path:"payment", component: PaymentComponent},
+  {path:"payment-result", component: PaymentResultComponent},
   {path:"**", component: Notfound}
 ];
 

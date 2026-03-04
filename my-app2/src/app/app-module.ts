@@ -19,6 +19,11 @@ import { Productdetail } from './productdetail/productdetail';
 import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct27 } from './fake-product27/fake-product27';
 import { TickerEx28 } from './ticker-ex28/ticker-ex28';
+import { BooksComponent } from './books-component/books-component';
+import { BookDetailComponent } from './book-detail-component/book-detail-component';
+import { FileUpload } from './file-upload/file-upload';
+import { Newbook } from './newbook/newbook';
+import { FashionComponent } from './fashion-component/fashion-component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { TickerEx28 } from './ticker-ex28/ticker-ex28';
     Productdetail,
     FakeProduct,
     FakeProduct27,
-    TickerEx28
+    TickerEx28,
+    BooksComponent,
+    BookDetailComponent,
+    FileUpload,
+    Newbook,
+    FashionComponent
   ],
   imports: [
     BrowserModule,

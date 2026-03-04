@@ -16,6 +16,7 @@ import { Ex22 } from './ex22/ex22';
 import { Product } from './ex19/product/product';
 import { ListProduct } from './ex19/list-product/list-product';
 import { ServiceProduct } from './ex19/service-product/service-product';
+import { Ex50RestfulAPI } from './ex50-restful-api/ex50-restful-api';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ServiceProduct } from './ex19/service-product/service-product';
     Product,
     ListProduct,
     ServiceProduct,
+    Ex50RestfulAPI,
 
   ],
   imports: [
