@@ -26,6 +26,8 @@ import { Newbook } from './newbook/newbook';
 import { FashionComponent } from './fashion-component/fashion-component';
 import { FashionDetailComponent } from './fashion-detail-component/fashion-detail-component';
 import { LoginComponent } from './login/login.component';
+import { ProductsComponent } from './products/products.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { LoginComponent } from './login/login.component';
     Newbook,
     FashionComponent,
     FashionDetailComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -15,10 +15,19 @@ import { BookDetailComponent } from './book-detail-component/book-detail-compone
 import { FileUpload } from './file-upload/file-upload';
 import { Newbook } from './newbook/newbook';
 import { FashionComponent } from './fashion-component/fashion-component';
+import { FashionDetailComponent } from './fashion-detail-component/fashion-detail-component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentResultComponent } from './payment-result/payment-result.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { ProductsComponent } from './products/products.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
+  {path:"", redirectTo: "/products", pathMatch: "full"},
+  {path:"products", component: ProductsComponent},
+  {path:"cart", component: CartComponent},
+  {path:"login", component: LoginComponent},
   {path:"gioi-thieu", component:About},
   {path:"khach-hang-1", component: Listcustomer},
   {path:"khach-hang-2", component: Listcustomer2},
@@ -33,7 +42,9 @@ const routes: Routes = [
   {path:"ex41/:id", component: BookDetailComponent},
   {path:"ex43", component: Newbook},
   {path:"ex49", component: FileUpload},
-  {path:"ex53", component: FashionComponent},
+  {path:"ex53", component: FashionComponent, canActivate: [AuthGuard]},
+  {path:"ex53/:id", component: FashionDetailComponent, canActivate: [AuthGuard]},
+  {path:"fashion", redirectTo: "/ex53", pathMatch: "full"},
   {path:"payment", component: PaymentComponent},
   {path:"payment-result", component: PaymentResultComponent},
   {path:"**", component: Notfound}
