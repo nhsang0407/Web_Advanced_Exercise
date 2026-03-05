@@ -24,6 +24,8 @@ import { BookDetailComponent } from './book-detail-component/book-detail-compone
 import { FileUpload } from './file-upload/file-upload';
 import { Newbook } from './newbook/newbook';
 import { FashionComponent } from './fashion-component/fashion-component';
+import { FashionDetailComponent } from './fashion-detail-component/fashion-detail-component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { FashionComponent } from './fashion-component/fashion-component';
     BookDetailComponent,
     FileUpload,
     Newbook,
-    FashionComponent
+    FashionComponent,
+    FashionDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
