@@ -1,0 +1,91 @@
+<div class="client-container">
+  <!-- Header -->
+  <header class="client-header">
+    <h1>✨ Fashion Collection</h1>
+    <p>Discover the latest trends in Casual, Streetwear, and Formal fashion</p>
+  </header>
+
+  <!-- Search/Filter Section -->
+  <div class="filter-section">
+    <h2>🔍 Search by Style</h2>
+    <div class="filter-controls">
+      <select 
+        class="style-dropdown" 
+        [(ngModel)]="selectedStyle" 
+        (change)="filterByStyle(selectedStyle)">
+        <option value="">All Styles</option>
+        <option *ngFor="let style of styles" [value]="style">{{ style }}</option>
+      </select>
+      
+      <button class="btn btn-clear" (click)="clearFilter()" *ngIf="selectedStyle">
+        ✖️ Clear Filter
+      </button>
+    </div>
+
+    <div class="style-badges" *ngIf="!selectedStyle">
+      <button 
+        *ngFor="let style of styles" 
+        class="style-badge"
+        [ngClass]="'badge-' + style.toLowerCase()"
+        (click)="filterByStyle(style)">
+        {{ style }}
+      </button>
+    </div>
+
+    <div *ngIf="selectedStyle" class="active-filter">
+      <span>Showing: <strong>{{ selectedStyle }}</strong></span>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading fashions...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && fashions.length === 0" class="empty-state">
+    <p>No fashion items found{{ selectedStyle ? ' for ' + selectedStyle : '' }}.</p>
+  </div>
+
+  <!-- Fashion Items Grouped by Style -->
+  <div *ngIf="!loading && fashions.length > 0" class="fashion-groups">
+    <div *ngFor="let styleKey of getStyleKeys()" class="style-group">
+      <h2 class="style-title">
+        <span class="style-badge" [ngClass]="'badge-' + styleKey.toLowerCase()">
+          {{ styleKey }}
+        </span>
+        <span class="item-count">({{ groupedFashions[styleKey].length }} items)</span>
+      </h2>
+
+      <div class="fashion-grid">
+        <div 
+          *ngFor="let fashion of groupedFashions[styleKey]" 
+          class="fashion-card"
+          (click)="viewDetail(fashion._id)">
+          <div class="card-image">
+            <img [src]="fashion.thumbnail" [alt]="fashion.title">
+            <div class="card-overlay">
+              <span>View Details</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>{{ fashion.title }}</h3>
+            <p class="preview">{{ getShortPreview(fashion.details) }}</p>
+            <button class="btn btn-view">Read More →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="client-footer">
+    <p>Total: <strong>{{ fashions.length }}</strong> fashion items available</p>
+  </footer>
+</div>

@@ -1,0 +1,29 @@
+{
+  "name": "server-fashion",
+  "version": "1.0.0",
+  "description": "Fashion Management Backend API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed": "node seedFashions.js"
+  },
+  "keywords": [
+    "fashion",
+    "api",
+    "mongodb",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

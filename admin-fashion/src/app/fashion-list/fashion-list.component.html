@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="header">
+    <h1>Fashion Management</h1>
+    <p class="subtitle">Admin Dashboard</p>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" (click)="addNew()">
+      <span class="icon">➕</span> Add New Fashion
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading fashions...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && fashions.length === 0" class="empty-state">
+    <p>No fashion items found. Click "Add New Fashion" to create one.</p>
+  </div>
+
+  <div *ngIf="!loading && fashions.length > 0" class="table-container">
+    <table class="fashion-table">
+      <thead>
+        <tr>
+          <th>Thumbnail</th>
+          <th>Title</th>
+          <th>Style</th>
+          <th>Created Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fashion of fashions">
+          <td>
+            <img [src]="fashion.thumbnail" [alt]="fashion.title" class="thumbnail">
+          </td>
+          <td>
+            <strong>{{ fashion.title }}</strong>
+          </td>
+          <td>
+            <span class="badge" [ngClass]="'badge-' + fashion.style.toLowerCase()">
+              {{ fashion.style }}
+            </span>
+          </td>
+          <td>{{ formatDate(fashion.createdAt) }}</td>
+          <td>
+            <div class="action-buttons">
+              <button 
+                class="btn btn-small btn-info" 
+                (click)="viewDetail(fashion._id!)"
+                title="View Detail">
+                👁️ View
+              </button>
+              <button 
+                class="btn btn-small btn-warning" 
+                (click)="editFashion(fashion._id!)"
+                title="Edit">
+                ✏️ Edit
+              </button>
+              <button 
+                class="btn btn-small btn-danger" 
+                (click)="deleteFashion(fashion._id!, fashion.title)"
+                title="Delete">
+                🗑️ Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && fashions.length > 0" class="summary">
+    <p>Total: <strong>{{ fashions.length }}</strong> fashion items</p>
+  </div>
+</div>

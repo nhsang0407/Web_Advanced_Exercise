@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="header">
+    <h1>{{ isEditMode ? 'Edit Fashion' : 'Add New Fashion' }}</h1>
+    <p class="subtitle">{{ isEditMode ? 'Update fashion details' : 'Create a new fashion item' }}</p>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading fashion details...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading" class="form-container">
+    <form (ngSubmit)="onSubmit()" #fashionForm="ngForm">
+      
+      <!-- Title -->
+      <div class="form-group">
+        <label for="title">Title <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="title" 
+          name="title"
+          class="form-control"
+          [(ngModel)]="fashion.title"
+          required
+          placeholder="Enter fashion title">
+      </div>
+
+      <!-- Style -->
+      <div class="form-group">
+        <label for="style">Style <span class="required">*</span></label>
+        <select 
+          id="style" 
+          name="style"
+          class="form-control"
+          [(ngModel)]="fashion.style"
+          required>
+          <option *ngFor="let styleOption of styles" [value]="styleOption">
+            {{ styleOption }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Thumbnail URL -->
+      <div class="form-group">
+        <label for="thumbnail">Thumbnail URL <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="thumbnail" 
+          name="thumbnail"
+          class="form-control"
+          [(ngModel)]="fashion.thumbnail"
+          required
+          placeholder="https://example.com/image.jpg">
+        <small class="form-text">Enter the full URL of the fashion image</small>
+        
+        <!-- Image Preview -->
+        <div *ngIf="fashion.thumbnail" class="image-preview">
+          <p>Preview:</p>
+          <img [src]="fashion.thumbnail" alt="Thumbnail preview" (error)="$event.target.src='https://via.placeholder.com/300x300?text=Invalid+Image'">
+        </div>
+      </div>
+
+      <!-- Details (HTML Editor) -->
+      <div class="form-group">
+        <label for="details">Details <span class="required">*</span></label>
+        <textarea
+          id="details" 
+          name="details"
+          class="form-control"
+          [(ngModel)]="fashion.details"
+          required
+          rows="10"
+          placeholder="Enter fashion description (HTML supported)">
+        </textarea>
+        <small class="form-text">You can use HTML tags to format your description (e.g., &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;)</small>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          (click)="cancel()"
+          [disabled]="submitting">
+          ✖️ Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="submitting || !fashionForm.form.valid">
+          <span *ngIf="!submitting">
+            {{ isEditMode ? '💾 Update Fashion' : '➕ Create Fashion' }}
+          </span>
+          <span *ngIf="submitting">
+            <span class="spinner-small"></span> Saving...
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="back-link">
+    <a routerLink="/">← Back to Fashion List</a>
+  </div>
+</div>

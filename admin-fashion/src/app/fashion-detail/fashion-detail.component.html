@@ -1,0 +1,57 @@
+<div class="container">
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading fashion details...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+    <button class="btn btn-secondary" (click)="goBack()">← Back to List</button>
+  </div>
+
+  <div *ngIf="!loading && fashion" class="detail-container">
+    <div class="detail-header">
+      <h1>{{ fashion.title }}</h1>
+      <span class="badge" [ngClass]="'badge-' + fashion.style.toLowerCase()">
+        {{ fashion.style }}
+      </span>
+    </div>
+
+    <div class="detail-content">
+      <div class="detail-image">
+        <img [src]="fashion.thumbnail" [alt]="fashion.title">
+      </div>
+
+      <div class="detail-info">
+        <div class="info-section">
+          <h3>📅 Created Date</h3>
+          <p>{{ formatDate(fashion.createdAt) }}</p>
+        </div>
+
+        <div class="info-section">
+          <h3>🏷️ Style Category</h3>
+          <p>{{ fashion.style }}</p>
+        </div>
+
+        <div class="info-section full-width">
+          <h3>📝 Fashion Details</h3>
+          <div class="details-content" [innerHTML]="fashion.details"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-secondary" (click)="goBack()">
+        ← Back to List
+      </button>
+      <div class="action-buttons">
+        <button class="btn btn-warning" (click)="editFashion()">
+          ✏️ Edit
+        </button>
+        <button class="btn btn-danger" (click)="deleteFashion()">
+          🗑️ Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

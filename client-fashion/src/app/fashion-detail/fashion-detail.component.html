@@ -1,0 +1,83 @@
+<div class="detail-wrapper">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading fashion details...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    <h2>⚠️ Error</h2>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-primary" (click)="goBack()">← Back to Collection</button>
+  </div>
+
+  <!-- Fashion Detail -->
+  <div *ngIf="!loading && fashion" class="detail-container">
+    <!-- Header -->
+    <div class="detail-header">
+      <button class="btn-back" (click)="goBack()">← Back to Collection</button>
+      <div class="header-content">
+        <h1>{{ fashion.title }}</h1>
+        <div class="meta-info">
+          <span 
+            class="style-tag" 
+            [ngClass]="'tag-' + fashion.style.toLowerCase()"
+            (click)="filterByStyle(fashion.style)">
+            {{ fashion.style }}
+          </span>
+          <span class="date">📅 {{ formatDate(fashion.createdAt) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="detail-content">
+      <!-- Fashion Image -->
+      <div class="detail-image">
+        <img [src]="fashion.thumbnail" [alt]="fashion.title">
+      </div>
+
+      <!-- Fashion Information -->
+      <div class="detail-info">
+        <div class="info-card">
+          <h2>✨ About This Style</h2>
+          <div class="fashion-details" [innerHTML]="fashion.details"></div>
+        </div>
+
+        <div class="info-card style-info">
+          <h3>🏷️ Style Category</h3>
+          <p class="style-description">
+            <span 
+              class="style-badge" 
+              [ngClass]="'badge-' + fashion.style.toLowerCase()">
+              {{ fashion.style }}
+            </span>
+          </p>
+          <button 
+            class="btn btn-secondary" 
+            (click)="filterByStyle(fashion.style)">
+            View More {{ fashion.style }} Items
+          </button>
+        </div>
+
+        <div class="info-card date-info">
+          <h3>📆 Published</h3>
+          <p>{{ formatDate(fashion.createdAt) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="detail-footer">
+      <button class="btn btn-primary" (click)="goBack()">
+        ← Back to All Fashion Items
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        (click)="filterByStyle(fashion.style)">
+        More {{ fashion.style }} →
+      </button>
+    </div>
+  </div>
+</div>
